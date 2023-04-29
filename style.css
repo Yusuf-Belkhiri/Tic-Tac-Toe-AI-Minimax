@@ -1,0 +1,32 @@
+@font-face {
+    font-family: Tic;
+    src: url('/LilitaOne-Regular.ttf');
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(to bottom, #180022, #2c003e);
+    background-size: cover;
+    
+}
+
+#logo{
+    display: block;
+    margin: 0 auto;
+}
+table {
+   
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 2px solid #4b0082;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+    background-color: whitesmoke;
+  }
+  
+  th, td {
+    width: 150px;
+    height: 150px;
+    background-color: transparent;
+    border: 1px solid #4b0082;
+   
+  }
