@@ -15,18 +15,18 @@ body {
     margin: 0 auto;
 }
 table {
-   
     margin: 0 auto;
     border-collapse: collapse;
     border: 2px solid #4b0082;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
-    background-color: whitesmoke;
+    background-color: rgba(247, 247, 247, 0.795); /* semi-transparent white */
+    
   }
   
   th, td {
     width: 150px;
     height: 150px;
     background-color: transparent;
-    border: 1px solid #4b0082;
-   
+    border: 8px solid #4b0082;
+    border-radius: 10px !important;
   }
