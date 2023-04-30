@@ -5,7 +5,8 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(to bottom, #180022, #2c003e);
+    background-image: url('./Untitled\ design\ \(2\).png');
+    /*background: linear-gradient(to bottom, #180022, #2c003e);*/
     background-size: cover;
     
 }
@@ -13,19 +14,22 @@ body {
 #logo{
     display: block;
     margin: 0 auto;
+    margin-bottom: 40px;
 }
 table {
+    
     margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
-    background-color: rgba(247, 247, 247, 0.795); /* semi-transparent white */
+    background-color:#4c149b
     
   }
   
  td ,th{
-    width: 150px;
-    height: 150px;
-    background-color: rgb(215, 6, 243);
+    width: 100px;
+    height: 100px;
+    background-color:transparent;
+    box-shadow: 0 0 2px 2px rgb(255, 238, 0);
     border: 14px solid  transparent ;
     border-radius: 10px !important;
    
