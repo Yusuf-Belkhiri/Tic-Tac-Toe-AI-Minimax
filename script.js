@@ -20,6 +20,17 @@ startGame();
 
 function startGame(){
     //document.querySelector(".endgame").style.display = "None"
-    origBoard = Array(9).keys;
+    origBoard = Array.from(Array(9).keys());
     console.log(origBoard);
+
+    // init game board (start)
+    for (var i = 0; i < cells.length; i++){
+        cells[i].innerText = '';
+        cells[i].style.removeProperty('background-color');
+        cells[i].addEventListener('click', onCellClick, false);
+    }
+}
+
+function onCellClick(cells){
+    console.log(cells.target.id);
 }
