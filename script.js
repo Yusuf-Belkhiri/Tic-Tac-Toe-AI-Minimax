@@ -21,5 +21,5 @@ startGame();
 function startGame(){
     //document.querySelector(".endgame").style.display = "None"
     origBoard = Array(9).keys;
-    print(origBoard);
+    console.log(origBoard);
 }
