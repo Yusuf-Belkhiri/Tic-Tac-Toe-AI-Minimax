@@ -21,7 +21,6 @@ startGame();
 function startGame(){
     //document.querySelector(".endgame").style.display = "None"
     origBoard = Array.from(Array(9).keys());
-    console.log(origBoard);
 
     // init game board (start)
     for (var i = 0; i < cells.length; i++){
@@ -31,6 +30,12 @@ function startGame(){
     }
 }
 
-function onCellClick(cells){
-    console.log(cells.target.id);
+function onCellClick(cell){
+    selectCell(cell.target.id, humanPlayer);
+}
+
+function selectCell(cellId, player){
+    origBoard[cellId] = player;
+    cells[cellId].innerText = player;
+    //document.getElementById(cellId).innerText = player;
 }
