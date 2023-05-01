@@ -36,6 +36,7 @@ function onClickCell(cell){
     if(selectCell(cell.target.id, humanPlayer))
         return;
 
+    // AI turn
     if(!checkDraw()) selectCell(bestSpot(), aiPlayer);
 }
 
@@ -88,16 +89,17 @@ function declareWinner(winnerText){
     console.log(winnerText);
 }
 
-function getEmptyCells(){
-    return origBoard.filter(cell => typeof(cell) == 'number');
+function getEmptySpots(board){
+    return board.filter(cell => typeof(cell) == 'number');
 }
 
 function bestSpot(){
-    return getEmptyCells()[0];
+    //return getEmptyCells(origBoard)[0];
+    return minimax(origBoard, aiPlayer).index;
 }
 
 function checkDraw(){
-    if(getEmptyCells().length > 0) 
+    if(getEmptySpots(origBoard).length > 0) 
         return false;
 
     for(let cell of cells){
@@ -106,4 +108,62 @@ function checkDraw(){
     }
     declareWinner("Draw!");
     return true;
+}
+
+
+/// Returns move{index, score}
+/// if player == aiPlayer: returns the move with best score
+/// if player == humanPlayer: returns the move with the lowest score
+function minimax(newBoard, player){
+    let availableSpots = getEmptySpots(newBoard);       // ex: 1, 4, 6
+
+    // Check terminal states: someone winning
+    if(checkWin(newBoard, humanPlayer))         // player wins
+        return {score: -10};
+    else if (checkWin(newBoard, aiPlayer))      // ai wins
+        return {score: 10}
+    else if (availableSpots.length == 0)        // draw
+        return {score: 0}
+
+    // Collect scores from each of the empty spots to evaluate later
+    var moves = [];     // contains the children scores & indexes
+    for(var i = 0; i < availableSpots.length; i++){
+        var move = {};      // move {index, score}
+        move.index = newBoard[availableSpots[i]];       // to reset the newboard later & return the best move index
+        newBoard[availableSpots[i]] = player;
+        
+        if(player == aiPlayer){
+            move.score = minimax(newBoard, humanPlayer).score;
+        }else{
+            move.score = minimax(newBoard, aiPlayer).score;
+        }
+
+        // reset the newboard
+        newBoard[availableSpots[i]] = move.index;
+        
+        moves.push(move);
+    }
+
+    var bestMove;
+    // If Ai turn: pick highest score       (select)
+    if(player == aiPlayer){
+        var bestScore = -10000;
+        for(var i = 0; i < moves.length; i++){
+            if(moves[i].score > bestScore){
+                bestMove = moves[i];
+                bestScore = moves[i].score;
+            }
+        }
+    }  // If Player turn: pick lowest score    (evaluate)
+    else{
+        var lowestScore = 10000;
+        for(var i = 0; i < moves.length; i++){
+            if(moves[i].score < lowestScore){
+                bestMove = moves[i];
+                lowestScore = moves[i].score;
+            }
+        }
+    }
+
+    return bestMove;
 }
