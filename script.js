@@ -29,7 +29,14 @@ function startGame(){
 }
 
 function onClickCell(cell){
-    selectCell(cell.target.id, humanPlayer);
+    // Check if cell can be selected
+    if(typeof(origBoard[cell.target.id]) != 'number')
+        return;
+    
+    if(selectCell(cell.target.id, humanPlayer))
+        return;
+
+    if(!checkDraw()) selectCell(bestSpot(), aiPlayer);
 }
 
 function selectCell(cellId, player){
@@ -40,6 +47,8 @@ function selectCell(cellId, player){
     let gameWon = checkWin(origBoard, player);
     if(gameWon)
         gameOver(gameWon);
+
+    return gameWon;              // Check if the game is won before checking if draw
 }
 
 function checkWin(board, player){
@@ -68,4 +77,33 @@ function gameOver(gameWon){
     for(let cell of cells){
         cell.removeEventListener('click', onClickCell, false);
     }
+
+    declareWinner(gameWon.player == humanPlayer ? "You Win !" : "You Lose !");
+}
+
+function declareWinner(winnerText){
+    // document.querySelector(".endgame").style.display = "block";
+    // document.querySelector(".endgame.text").innerText = winnerText;
+
+    console.log(winnerText);
+}
+
+function getEmptyCells(){
+    return origBoard.filter(cell => typeof(cell) == 'number');
+}
+
+function bestSpot(){
+    return getEmptyCells()[0];
+}
+
+function checkDraw(){
+    if(getEmptyCells().length > 0) 
+        return false;
+
+    for(let cell of cells){
+        cell.style.backgroundColor = 'green';
+        cell.removeEventListener('click', onClickCell, false);
+    }
+    declareWinner("Draw!");
+    return true;
 }
