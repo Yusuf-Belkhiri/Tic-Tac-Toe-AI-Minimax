@@ -115,7 +115,7 @@ function checkDraw(){
 /// if player == aiPlayer: returns the move with best score
 /// if player == humanPlayer: returns the move with the lowest score
 function minimax(newBoard, player){
-    let availableSpots = getEmptySpots(newBoard);       // ex: 1, 4, 6
+    let availableSpots = getEmptySpots(newBoard);       // indexes, ex: 1, 4, 6
 
     // Check terminal states: someone winning
     if(checkWin(newBoard, humanPlayer))         // player wins
@@ -132,13 +132,14 @@ function minimax(newBoard, player){
         move.index = newBoard[availableSpots[i]];       // to reset the newboard later & return the best move index
         newBoard[availableSpots[i]] = player;
         
+        // RECURSIVITY, Switch turns
         if(player == aiPlayer){
             move.score = minimax(newBoard, humanPlayer).score;
         }else{
             move.score = minimax(newBoard, aiPlayer).score;
         }
 
-        // reset the newboard
+        // reset the newboard (Back from recursivity)
         newBoard[availableSpots[i]] = move.index;
         
         moves.push(move);
