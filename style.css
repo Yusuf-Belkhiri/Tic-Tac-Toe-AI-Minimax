@@ -1,6 +1,6 @@
 @font-face {
     font-family: Tic;
-    src: url('/LilitaOne-Regular.ttf');
+    src: url('/PermanentMarker-Regular.ttf');
 }
 
 body {
@@ -14,23 +14,72 @@ body {
 #logo{
     display: block;
     margin: 0 auto;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    margin-top: -15px;
 }
 table {
-    
+    border-collapse: separate;
+    border-spacing: 10px; /* add spacing between table lines */
     margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
-    background-color:#4c149b
+    background-color: rgb(240, 255, 24);
+  }
+  
+  .cell {
+    width: 120px;
+    height: 120px;
+    background-color: #7005b8;
+ 
+    border-radius: 10px ;
+    text-align: center;
+    font-family: Tic;
+    font-size: 48px;
+    color: #ffffff;
+    font-weight: bold;
     
   }
   
- td ,th{
-    width: 100px;
-    height: 100px;
-    background-color:transparent;
-    box-shadow: 0 0 2px 2px rgb(255, 238, 0);
-    border: 14px solid  transparent ;
-    border-radius: 10px !important;
-   
+  .cell:hover {
+    background-color: #e0e0d9;
+    color: #000000;
   }
+  button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 0.1em 0.25em;
+    width: 13em;
+    height: 4.2em;
+    background-color: #212121;
+    border: 0.08em solid #fff;
+    border-radius: 0.3em;
+    font-size: 12px;
+  }
+  
+  button span {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0.4em;
+    width: 8.25em;
+    height: 2.5em;
+    background-color: #212121;
+    border-radius: 0.2em;
+    font-size: 1.5em;
+    color: #fff;
+    border: 0.08em solid #fff;
+    box-shadow: 0 0.4em 0.1em 0.019em #fff;
+  }
+  
+  button span:hover {
+    transition: all 0.5s;
+    transform: translate(0, 0.4em);
+    box-shadow: 0 0 0 0 #fff;
+  }
+  
+  button span:not(hover) {
+    transition: all 1s;
+  }
+  
+  
